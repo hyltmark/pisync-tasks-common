@@ -1,0 +1,39 @@
+{
+  "default": [
+    {
+      "critical": false,
+      "task": "stop:all"
+    },
+    {
+      "critical": false,
+      "cwd": "[pisync:remote:projectsDir]",
+      "command": "rm -rf [remote:projectsDir][id]"
+    },
+    {
+      "critical": true,
+      "cwd": "[pisync:remote:tmpDir]",
+      "command": "gunzip [uploadedFile]" 
+    },
+    {
+      "critical": true,
+      "cwd": "[pisync:remote:tmpDir]",
+      "command": "mv [pisync:remote:tmpDir][id] [pisync:remote:tmpDir][id].tar"
+    },
+    {
+      "critical": true,
+      "cwd": "[pisync:remote:tmpDir]",
+      "command": "mkdir [pisync:remote:projectsDir][id]"
+    },
+    {
+      "critical": true,
+      "cwd": "[pisync:remote:tmpDir]",
+      "command": "tar -xvf [pisync:remote:tmpDir][id].tar -C [pisync:remote:projectsDir][id]"
+    },
+    {
+      "critical": true,
+      "cwd": "[pisync:remote:tmpDir]",
+      "command": "rm [pisync:remote:tmpDir][id].tar"
+    },
+    "setTitle"
+  ] 
+}
